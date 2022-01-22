@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import TradingPairSelector from './components/TradingPairSelector';
+import WebsocketsBinance from './components/WebsocketsBinance';
+import DecimalSelector from './components/DecimalSelector';
+import { Container, Typography } from '@mui/material';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+	const params = useParams();
+	let pair = params.pair;
+	if (!pair || typeof pair === undefined) {
+		pair = 'ethbtc';
+	}
+	const [selectedTradingPair, setSelectedTradingPair] = useState(pair);
+	const [decimals, setDecimals] = useState(6);
+
+	const handleDecimalsChange = (event) => {
+		setDecimals(event.target.value);
+	};
+	return (
+		<Container maxWidth='lg'>
+			<Typography variant='h2'>
+				Trading pair -{'>'} <strong>{selectedTradingPair.toUpperCase()}</strong>
+			</Typography>
+			<TradingPairSelector
+				tradingPair={selectedTradingPair}
+				changeTradingPair={setSelectedTradingPair}
+			/>
+			<DecimalSelector
+				handleChange={handleDecimalsChange}
+				decimals={decimals}
+			/>
+			<WebsocketsBinance
+				tradingPair={selectedTradingPair}
+				depth={5}
+				decimals={decimals}
+			/>
+		</Container>
+	);
+};
 
 export default App;
