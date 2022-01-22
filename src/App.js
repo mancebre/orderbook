@@ -11,7 +11,6 @@ const App = () => {
 	if (!pair || typeof pair === undefined) {
 		pair = 'ethbtc';
 	}
-	console.log(pair);
 	const [selectedTradingPair, setSelectedTradingPair] = useState(pair);
 	const [decimals, setDecimals] = useState(6);
 
