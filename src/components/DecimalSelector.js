@@ -17,6 +17,7 @@ const DecimalSelector = (props) => {
 					<MenuItem value={4}>4 Decimals</MenuItem>
 					<MenuItem value={5}>5 Decimals</MenuItem>
 					<MenuItem value={6}>6 Decimals</MenuItem>
+					<MenuItem value={8}>8 Decimals</MenuItem>
 				</Select>
 			</FormControl>
 		</Box>

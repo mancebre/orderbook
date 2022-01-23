@@ -12,7 +12,7 @@ const App = () => {
 		pair = 'ethbtc';
 	}
 	const [selectedTradingPair, setSelectedTradingPair] = useState(pair);
-	const [decimals, setDecimals] = useState(6);
+	const [decimals, setDecimals] = useState(8);
 
 	const handleDecimalsChange = (event) => {
 		setDecimals(event.target.value);
